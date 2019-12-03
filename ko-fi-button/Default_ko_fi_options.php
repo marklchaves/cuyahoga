@@ -4,9 +4,9 @@ class Default_ko_fi_options {
 
 	public static function get(){
 		return array(
-			'page_title'        => __( 'ko-fi Settings', 'Ko_fi' ),
+			'page_title'        => __( 'Ko-fi Settings', 'Ko_fi' ),
 			'page_description'  => false,
-			'menu_title'        => __( 'ko-fi Settings', 'Ko_fi' ),
+			'menu_title'        => __( 'Ko-fi Settings', 'Ko_fi' ),
 			'capability'        => 'manage_options',
 			'menu_slug'         => 'ko_fi_options',
 			'option_name'       => 'ko_fi_options',
@@ -63,6 +63,13 @@ class Default_ko_fi_options {
                             'type'        => 'checkbox',
                             'label'       => 'Hyperlink',
                             'description' => __( 'Check this box if you want to display your button as a hyperlink by default.', 'Ko_fi' ),
+						),
+                        array(
+                            'slug'        => 'posts',
+                            'title'       => __( 'Add to Posts', 'Ko_fi' ),
+                            'type'        => 'checkbox',
+                            'label'       => 'Posts',
+                            'description' => __( 'Check this box if you want add a pretty linkbox to the bottom of all your posts.', 'Ko_fi' ),
                         )
 					)
 				)

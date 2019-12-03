@@ -1,11 +1,11 @@
 <?php
 
 /*
-Plugin Name: Ko-Fi Button
+Plugin Name: Ko-fi Button
 Plugin URI:
-Description: A ko-fi donate button for your website!
+Description: A Ko-fi donate button for your website!
 Version: 0.3.0
-Author: Ko-fi Team; wwww.ko-fi.com
+Author: Ko-fi Team; www.ko-fi.com
 Author URI:
 License: GPL2
 */
