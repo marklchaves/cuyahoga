@@ -24,7 +24,8 @@ class Ko_Fi
         require_once 'Default_ko_fi_options.php';
         require_once 'Ko_fi_Options.php';
         self::$options = (new Ko_fi_Options())->get();
-        add_filter('plugin_action_links', [__CLASS__,'add_action_links'],10,5);
+        add_filter('plugin_action_links', [__CLASS__, 'add_action_links'], 10, 5);
+        add_filter('the_content', [__CLASS__, 'add_to_posts'], 10, 5);
     }
 
     public static function add_action_links($actions, $plugin_file)
@@ -41,8 +42,6 @@ class Ko_Fi
             ];
 
             $actions = array_merge($plugin_links, $actions);
-
-
         }
 
         return $actions;
@@ -61,7 +60,6 @@ class Ko_Fi
     {
         require_once 'ko_fi_widget.php';
         register_widget('ko_fi_widget');
-
     }
 
     // Add Shortcode
@@ -91,12 +89,13 @@ class Ko_Fi
             //echo 'no options';
             $color_options = '';
         }
-        echo sprintf('<input class="jscolor %4$s "  id="%1$s" name="%2$s" value="%3$s" />',
+        echo sprintf(
+            '<input class="jscolor %4$s "  id="%1$s" name="%2$s" value="%3$s" />',
             esc_attr($args['option_id']),
             empty($args['name']) ? esc_attr($args['option_id']) : $args['name'],
             esc_attr($args['value']),
-            esc_attr($color_options));
-
+            esc_attr($color_options)
+        );
     }
 
     public static function get_embed_code($atts)
@@ -105,16 +104,19 @@ class Ko_Fi
         $settings = wp_parse_args($atts, self::$options);
         foreach ($atts as $key => $value) {
             switch ($key) {
-                case 'title'  :
+                case 'title':
                     $key = 'coffee_title';
                     break;
-                case 'text'   :
+                case 'text':
                     $key = 'coffee_text';
                     break;
-                case 'hyperlink' :
+                case 'hyperlink':
                     $key = 'coffee_hyperlink';
                     break;
-                case 'color' :
+                case 'posts':
+                    $key = 'coffee_posts';
+                    break;
+                case 'color':
                     $key = 'coffee_color';
                     break;
                 case 'code':
@@ -123,13 +125,14 @@ class Ko_Fi
                         $value = '';
                     //$pattern = '/(?:https*:\/\/)?(?:www.)?(?:ko-fi\.com\/)?([A-Z,0-9,a-z]+)\/?/';
                     //preg_match($pattern, $value, $matches);
-                    $value = str_replace('http://ko-fi.com/', '', str_replace( 'https://ko-fi.com/', '', self::$options['coffee_code'] ));
+                    $value = str_replace('https://ko-fi.com/', '', str_replace('https://ko-fi.com/', '', self::$options['coffee_code']));
                     break;
             }
             $settings[$key] = $value;
         }
+
         if ($settings['coffee_hyperlink'] === true) {
-            return "<a href='" . "http://www.ko-fi.com/" . $settings['coffee_code'] . "'>{$settings['coffee_text']}</a>";
+            return "<a href='" . "https://www.ko-fi.com/" . $settings['coffee_code'] . "'>{$settings['coffee_text']}</a>";
         } else {
             return "<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
 	        <script type='text/javascript'>kofiwidget2.init('" . $settings['coffee_text'] . "', '#" . $settings['coffee_color'] . "', '" . $settings['coffee_code'] . "');
@@ -137,6 +140,45 @@ class Ko_Fi
         }
     }
 
+    /**
+     * Add the pretty linkbox to the bottom of all posts.
+     */
+    public static function add_to_posts($content)
+    {
+        $doPosts = false;
+        if (isset(self::$options['coffee_posts'])) {
+            $doPosts = self::$options['coffee_posts'];
+        }
+        if ($doPosts) {
+            $title = self::$options['coffee_title'];
+            $description = self::$options['coffee_description'];
+            $code = self::$options['coffee_code'];
+            $linkbox = <<<EOT
+    <div style="overflow:hidden;border-radius:5px 5px 5px 5px;box-shadow: 3px 2px 3px 5px;padding: 2% 2% 2% 2%; background-position:left top;background-repeat:no-repeat;-webkit-background-size:cover-moz-background-size:cover;-o-background-size:cover;background-size:cover;border-radius:5px 5px 5px 5px;"data-bg-url="">
+    <div>
+        <h3 style="text-align: center;">
+            {$title}
+        </h3>
+    </div>
+    <div>
+        <p style="text-align: center;">
+            {$description}
+        </p>
+    </div>
+    <div style="text-align: center; display: flex; justify-content: center;"> 
+        <a href="https://ko-fi.com/{$code}" target="_blank">
+            <img style="border:0px;height:45px;" src="https://az743702.vo.msecnd.net/cdn/kofi5.png?v=2" alt="Buy Me a Coffee at ko-fi.com" height="45" border="0" align="middle"></a>
+        </div>
+    </div>
+    </div>
+    EOT;
+            $theContent = $content;
+            return (is_single()) ? $theContent . $linkbox : $theContent;
+
+        } else {
+            return $content;
+        }
+    }
 
 }
 

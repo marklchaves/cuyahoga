@@ -16,8 +16,9 @@ class Default_ko_fi_options {
 				'coffee_text'       => __( 'Buy me a coffee!', 'Ko_fi' ),
 				'coffee_color'      => __('46b798', 'Ko_fi' ),
                 'coffee_description'=> __( 'Buy me a coffee!', 'Ko_fi' ),
-				'coffee_code'       => 'http://ko-fi.com/',
-                'coffee_hyperlink'  => false
+				'coffee_code'       => 'YOURCODEHERE',
+				'coffee_hyperlink'  => false,
+				'coffee_posts'		=> false
 			),
 			'sections'           => array(
 				array(
