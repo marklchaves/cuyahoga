@@ -1,39 +1,42 @@
 <?php 
  
 /*
-Plugin Name: Tuts Formatting
-Plugin URI: http://net.tutsplus.com
-Description: Saves me time.
+Plugin Name: Ko-fi Linkbox
+Plugin URI: https://caughtmyeye.dev
+Description: Adds a pretty Ko-fi link box to the bottom of all WordPress blog posts.
 Version: 1.0
-Author: Jeffrey Way
-Author URI: http://net.tutsplus.com
+Author: mark l chaves
+Author URI: https://caughtmyeye.dev
 */
 
 /**
- * For the Tuts_Formatting Plugin Tutorial
- *
- * https://code.tutsplus.com/articles/a-crash-course-in-wordpress-plugin-development--net-4598
+ * TBD
  */
-function Tut_Formatting($content) {
-    $end_of_tut = <<<EOT
-    <div class="webroundup-wrapper">
-    <div class="webroundup">
-        <div>Follow us on <a href="http://www.twitter.com/nettuts">Twitter</a>, or subscribe to the <a href="http://feeds.feedburner.com/nettuts" title="NETTUTS RSS Feed">NETTUTS RSS Feed</a> for more daily web development tuts and articles.</div>
-    </div> 
+function kofi_linkbox($content) {
+    $linkbox = <<<EOT
+    <div style="overflow:hidden;border-radius:5px 5px 5px 5px;box-shadow: 3px 2px 3px 5px;padding: 2% 2% 2% 2%;background-position:left top;background-repeat:no-repeat;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;border-radius:5px 5px 5px 5px;" data-bg-url="">
+    <div>
+        <h3 style="text-align: center;">
+            Questions or Comments?
+        </h3>
+    </div>
+    <div>
+        <p style="text-align: center;">
+            If something isn’t clear or if I missed something, please leave me a comment below.
+        </p>
+    </div>
+    <div style="text-align: center; display: flex; justify-content: center;"> 
+        <a href="https://ko-fi.com/D1D7YARD" target="_blank">
+            <img style="border:0px;height:45px;" src="https://az743702.vo.msecnd.net/cdn/kofi5.png?v=2" alt="Buy Me a Coffee at ko-fi.com" height="45" border="0" align="middle"></a>
+        </div>
+    </div>
     </div>
     EOT;
-    /* There's a bug in here that messes up the closing post content tag. ~mlc 29 November 2019
-    $match = preg_match_all('/<div class=[\'"]?tutorial_image[\'"]?>\s*<img src=[\'"]?.+\.(jpg|gif|jpeg|png)[\'"]?(\s.+)?[(\s\/>)|(>)]\s*<\/div>/i', $content, $matches);
-    if(!$match) {
-        $theContent = preg_replace('/<img src=[\'"]?.+\.(jpg|gif|jpeg|png)[\'"]?(\s.+)?[(\s\/>)|(>)]/', '<div class="tutorial_image">$0</div>', $content);
-    } else {
-        $theContent = $content;
-    }
-    */
+    
+    // write_log( "Here's the linkbox {$linkbox}" );
+
     $theContent = $content;
 
-    $theContent = preg_replace('/<h2>/', '<h3>', $theContent);
-    $theContent = preg_replace('/<\/h2>/', '</h3>', $theContent);
-    return (is_single()) ? $theContent . $end_of_tut : $theContent;
+    return (is_single()) ? $theContent . $linkbox : $theContent;
 }
-add_filter('the_content', 'Tut_Formatting');
+add_filter('the_content', 'kofi_linkbox');
