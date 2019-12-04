@@ -145,10 +145,8 @@ class Ko_Fi
      */
     public static function add_to_posts($content)
     {
-        $doPosts = false;
-        if (isset(self::$options['coffee_posts'])) {
-            $doPosts = self::$options['coffee_posts'];
-        }
+        // Generate the HTML only if the "Add to Posts" setting is checked.
+        $doPosts = (isset(self::$options['coffee_posts']) ? self::$options['coffee_posts'] : false);
         if ($doPosts) {
             $title = self::$options['coffee_title'];
             $description = self::$options['coffee_description'];
@@ -173,9 +171,11 @@ class Ko_Fi
     </div>
     EOT;
             $theContent = $content;
+            // Append to posts only.
             return (is_single()) ? $theContent . $linkbox : $theContent;
 
         } else {
+            // Not a post, then just return the post content without the Ko-fi linkbox.
             return $content;
         }
     }
