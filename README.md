@@ -12,7 +12,7 @@ This version of the Ko-fi Button Plugin incorporates the [prototype code (below)
 
 ### Status
 
-The official plugin looks like it hasn't been touched in over a year (14 months). I'd like to revive it wit the new **Add to Posts** feature.
+The official plugin looks like it hasn't been touched in over a year (14 months). I'd like to revive this plugin with the new **Add to Posts** feature.
 
 I developed the **Add to Posts** code on 4 December 2019. I posted a notice on [the plugin forum](https://wordpress.org/support/topic/dev-code-branch-for-adding-button-to-posts/) shortly after. So far, no replies. Please keep an eye on this README or on the forum for updates. Thanks!
 
