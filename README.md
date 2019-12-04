@@ -14,7 +14,7 @@ This version of the Ko-fi Button Plugin incorporates the [prototype code (below)
 
 ![Plugin Settings Page](/assets/ko-fi-button-plugin-add-to-posts-setting-1280w.jpg "Plugin Settings")
 
-![Result](ko-fi-button-plugin-posts-linkbox-588w.jpg "Result")
+![Result](/assets/ko-fi-button-plugin-posts-linkbox-588w.jpg "Result")
 
 ---
 
