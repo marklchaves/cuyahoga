@@ -20,7 +20,9 @@ I developed the **Add to Posts** code on 4 December 2019. I posted a notice on [
 
 ![Plugin Settings Page](/assets/ko-fi-button-plugin-add-to-posts-setting-1280w.jpg "Plugin Settings")
 
-![Result](/assets/ko-fi-button-plugin-posts-linkbox-588w.jpg "Result")
+![Result Overview](/assets/ko-fi-button-plugin-posts-linkbox-588w.jpg "Result Overview")
+
+![Result Detail](/assets/ko-fi-button-plugin-posts-linkbox-1280w.jpg "Result Detail")
 
 ---
 
