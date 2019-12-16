@@ -1,4 +1,4 @@
-# cuyohoga
+# cuyahoga
 
 ### A Collection of WordPress Plugins
 
