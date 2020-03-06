@@ -1,10 +1,4 @@
-# cuyahoga
-
-### A Collection of WordPress Plugins
-
----
-
-## Ko-fi Button Plugin
+# Ko-fi Button Plugin
 
 [Plugin Homepage on WordPress.org](https://wordpress.org/plugins/ko-fi-button/)
 
@@ -23,22 +17,6 @@ I developed the **Add to Posts** code on 4 December 2019. I posted a notice on [
 ![Result Overview](/assets/ko-fi-button-plugin-posts-linkbox-588w.jpg "Result Overview")
 
 ![Result Detail](/assets/ko-fi-button-plugin-posts-linkbox-1280w.jpg "Result Detail")
-
----
-
-## Ko-fi Linkbox Prototype <a name="prototype" id="prototype"></a>
-
-This WordPress plugin is a proof of concept. When activated, it displays at the bottom of all **posts** a _pretty_ content box with the Ko-fi "button" linked to a Ko-fi page. All information details are hardcoded in the PHP. There is no wp-admin settings page interface.
-
----
-
-## Log Error
-
-Allows writing debug statements to the WordPress **debug.log** file.
-
-### Usage
-
-`write_log( "Here's the linkbox {$linkbox}" );`
 
 ---
 
